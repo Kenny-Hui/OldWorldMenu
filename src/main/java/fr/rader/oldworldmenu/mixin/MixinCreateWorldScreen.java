@@ -85,9 +85,8 @@ public abstract class MixinCreateWorldScreen extends Screen {
     }
 
     @Override
-    protected void renderDarkening(DrawContext context, int x, int y, int width, int height) {
-        // We want a full screen darkening
-        context.fillGradient(0, 0, this.width, this.height, 0x44000000, 0x44000000);
+    public void renderDarkening(DrawContext context) {
+        super.renderDarkening(context, 0, 0, this.width, this.height);
     }
 
     @Override
