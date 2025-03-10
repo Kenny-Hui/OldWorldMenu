@@ -107,7 +107,7 @@ public class MoreWorldOptionsComponent {
         } else {
             this.generateStructuresButton.visible = visible;
             this.bonusChestButton.visible = visible;
-            this.customizeWorldButton.visible = visible;
+            this.customizeWorldButton.visible = visible && this.worldCreator.getLevelScreenProvider() != null;
         }
 
         this.worldTypeButton.visible = visible;
