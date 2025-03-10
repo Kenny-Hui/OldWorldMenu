@@ -45,6 +45,7 @@ public class MoreWorldOptionsComponent {
 
         this.seedField = new TextFieldWidget(textRenderer, this.halfWidth - 100, 60, 200, 20, SEED_LABEL);
         this.seedField.setText(this.worldCreator.getSeed());
+        this.seedField.setChangedListener(this.worldCreator::setSeed);
 
         int leftColumnX = this.halfWidth - 155;
         int rightColumnX = this.halfWidth + 5;
