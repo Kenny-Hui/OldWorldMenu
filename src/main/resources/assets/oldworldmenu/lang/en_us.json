@@ -1,0 +1,14 @@
+{
+  "oldworldmenu.selectWorld.resultFolder": "Will be saved in:",
+  "oldworldmenu.selectWorld.moreWorldOptions": "More World Options...",
+  "oldworldmenu.selectWorld.gameMode.adventure.line1": "Same as Survival Mode, but blocks can't",
+  "oldworldmenu.selectWorld.gameMode.adventure.line2": "be added or removed",
+  "oldworldmenu.selectWorld.gameMode.creative.line1": "Unlimited resources, free flying and",
+  "oldworldmenu.selectWorld.gameMode.creative.line2": "destroy blocks instantly",
+  "oldworldmenu.selectWorld.gameMode.hardcore.line1": "Same as Survival Mode, locked at hardest",
+  "oldworldmenu.selectWorld.gameMode.hardcore.line2": "difficulty, and one life only",
+  "oldworldmenu.selectWorld.gameMode.spectator.line1": "You can look but don't touch",
+  "oldworldmenu.selectWorld.gameMode.spectator.line2": "",
+  "oldworldmenu.selectWorld.gameMode.survival.line1": "Search for resources, craft, gain",
+  "oldworldmenu.selectWorld.gameMode.survival.line2": "levels, health and hunger"
+}

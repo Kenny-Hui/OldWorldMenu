@@ -1,6 +1,5 @@
 package fr.rader.oldworldmenu.mixin;
 
-import com.mojang.blaze3d.systems.RenderSystem;
 import fr.rader.oldworldmenu.MoreWorldOptionsComponent;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;
@@ -62,7 +61,6 @@ public abstract class MixinCreateWorldScreen extends Screen {
 
     @Override
     public void render(DrawContext context, int mouseX, int mouseY, float delta) {
-        renderBackground(context, mouseX, mouseY, delta);
         super.render(context, mouseX, mouseY, delta);
         context.drawCenteredTextWithShadow(this.textRenderer, this.title, this.halfWidth, 20, -1);
 
@@ -84,6 +82,12 @@ public abstract class MixinCreateWorldScreen extends Screen {
                 context.drawTextWithShadow(this.textRenderer, ALLOW_CHEATS_INFO_LABEL, textPositionX, 172, GRAY_COLOR);
             }
         }
+    }
+
+    @Override
+    protected void renderDarkening(DrawContext context, int x, int y, int width, int height) {
+        // We want a full screen darkening
+        context.fillGradient(0, 0, this.width, this.height, 0x44000000, 0x44000000);
     }
 
     @Override
@@ -141,7 +145,7 @@ public abstract class MixinCreateWorldScreen extends Screen {
 
         this.gameRulesButton = ButtonWidget.builder(GAME_RULES_TEXT, button -> {
                     this.client.setScreen(new EditGameRulesScreen(
-                            this.worldCreator.getGameRules().copy(),
+                            this.worldCreator.getGameRules().copy(this.worldCreator.getGeneratorOptionsHolder().dataConfiguration().enabledFeatures()),
                             optional -> {
                                 this.client.setScreen(this);
                                 optional.ifPresent(this.worldCreator::setGameRules);
@@ -199,11 +203,6 @@ public abstract class MixinCreateWorldScreen extends Screen {
         return super.keyPressed(keyCode, scanCode, modifiers);
     }
 
-    @Override
-    public void initTabNavigation() {
-        super.initTabNavigation();
-    }
-
     private void setWorldName(String newWorldName) {
         this.worldCreator.setWorldName(newWorldName);
 
@@ -229,8 +228,8 @@ public abstract class MixinCreateWorldScreen extends Screen {
             gameModeName = "spectator";
         }
 
-        this.gameModeHelp1 = Text.translatable("selectWorld.gameMode." + gameModeName + ".line1");
-        this.gameModeHelp2 = Text.translatable("selectWorld.gameMode." + gameModeName + ".line2");
+        this.gameModeHelp1 = Text.translatable("oldworldmenu.selectWorld.gameMode." + gameModeName + ".line1");
+        this.gameModeHelp2 = Text.translatable("oldworldmenu.selectWorld.gameMode." + gameModeName + ".line2");
     }
 
     private void toggleWorldOptionsVisibility() {
